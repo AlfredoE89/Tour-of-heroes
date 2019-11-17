@@ -15,7 +15,7 @@ export class UserViewComponent implements OnInit {
   user: User;
 
   constructor(
-    private usersService: UsersService,
+  private usersService: UsersService,
   private router: Router,
   private route: ActivatedRoute
   ) { }
@@ -34,4 +34,12 @@ export class UserViewComponent implements OnInit {
       }
     );
   }
+
+deleteUser(id: string): void {
+  if(confirm("Are you sure to delete " + this.user.username)) {
+    this.usersService.deleteUser(id).subscribe(
+      ()=>{this.router.navigate(['/users'])}
+    );
+  }
+ }
 }
